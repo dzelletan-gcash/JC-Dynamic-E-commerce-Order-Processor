@@ -15,6 +15,7 @@ public class InteractiveOrderProcessor {
         final double SMALL_ORDER_SURCHARGE = 3.00;
 
         // Get Order Data from User
+        System.out.println("\n--- Enter Order Details ---");
         System.out.print("Enter unitPrice: ");
         double unitPrice = scanner.nextDouble();
 
@@ -31,11 +32,22 @@ public class InteractiveOrderProcessor {
         System.out.print("Enter shipping zone (ZoneA/ZoneB/ZoneC/Unknown): ");
         final String shippingZone = scanner.nextLine();
 
-        System.out.print("Enter discount code: (SAVE10/FREESHIP/\"\" for none)");
+        System.out.print("Enter discount code (SAVE10/FREESHIP/\"\" for none): ");
         String discountCode = scanner.nextLine();
+
+        System.out.println("\n--- Order Details ---");
+        System.out.printf("Unit Price: $%.2f%n", unitPrice);
+        System.out.printf("Quantity: %d%n", quantity);
+        System.out.printf("Is Member: %b%n", isMember);
+        System.out.printf("Customer Tier: %s%n", customerTier);
+        System.out.printf("Shipping Zone: %s%n", shippingZone);
+        System.out.printf("Discount Code: %s%n", discountCode);
+
+        System.out.println("\n--- Calculation Steps ---");
 
         // Subtotal Calculation
         double subTotal = unitPrice * quantity;
+        System.out.printf("Initial Subtotal: $%.2f%n", subTotal);
 
         // Tier-Based Discount
         double total;
@@ -46,11 +58,13 @@ public class InteractiveOrderProcessor {
         } else {
             total = subTotal;
         }
+        System.out.printf("Total after Tier Discount: $%.2f%n", total);
 
         // Quantity Discount
         if (quantity >= 5) {
             total *= 1 - QUANTITY_DISCOUNT;
         }
+        System.out.printf("Total after Quantity Discount: $%.2f%n", total);
 
         // Promotional Code Application
         double shippingCost = 0;
@@ -59,9 +73,11 @@ public class InteractiveOrderProcessor {
         } else if (discountCode.equalsIgnoreCase("FREESHIP")) {
             shippingCost = 0;
         }
+        System.out.printf("Total after Promo Code: $%.2f%n", total);
 
         // Small Order Surcharge
         total = (total < SMALL_ORDER_THRESHOLD) ? total + SMALL_ORDER_SURCHARGE : total;
+        System.out.printf("Total after Small Order Surcharge (if applicable): $%.2f%n", total);
 
         // Shipping Cost Calculation
         if (!discountCode.equalsIgnoreCase("FREESHIP")) {
@@ -79,26 +95,11 @@ public class InteractiveOrderProcessor {
                     shippingCost = 25.0;
             }
         }
+        System.out.printf("Shipping Cost: $%.2f (%s)%n", shippingCost, shippingZone);
 
         // Final Total
         double finalOrderTotal = total + shippingCost;
-
-        // Output
-        System.out.println("\n--- Order Details ---");
-        System.out.printf("Unit Price: $%.2f%n", unitPrice);
-        System.out.printf("Quantity: %d%n", quantity);
-        System.out.printf("Is Member: %b%n", isMember);
-        System.out.printf("Customer Tier: %s%n", customerTier);
-        System.out.printf("Shipping Zone: %s%n", shippingZone);
-        System.out.printf("Discount Code: %s%n", discountCode);
-
-        System.out.println("\n--- Calculation Steps ---");
-        System.out.printf("Initial Subtotal: $%.2f%n", subTotal);
-        System.out.printf("Total after Tier Discount: $%.2f%n", subTotal == total ? total : total / ((1 - GOLD_DISCOUNT) * (1 - QUANTITY_DISCOUNT)));
-        System.out.printf("Total after Quantity Discount: $%.2f%n", total);
-        System.out.printf("Total after Promo Code: $%.2f%n", total);
-        System.out.printf("Shipping Cost: $%.2f%n", shippingCost);
-        System.out.printf("Final Order Total: $%.2f%n", finalOrderTotal);
+        System.out.printf("%nFinal Order Total: $%.2f%n", finalOrderTotal);
 
         stringEqualityDemo();
 
@@ -111,10 +112,10 @@ public class InteractiveOrderProcessor {
         System.out.println("\n--- String Equality Demo ---");
 
         // String Equality Demonstrations
-        System.out.println("First string for comparison: ");
+        System.out.print("First string for comparison: ");
         String firstString = scanner.nextLine();
 
-        System.out.println("Second string for comparison: ");
+        System.out.print("Second string for comparison: ");
         String secondString = scanner.nextLine();
 
         System.out.printf("\nString 1: \"%s\"%n", firstString);
