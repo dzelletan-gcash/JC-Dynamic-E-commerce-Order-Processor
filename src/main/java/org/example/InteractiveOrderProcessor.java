@@ -15,23 +15,23 @@ public class InteractiveOrderProcessor {
         final double SMALL_ORDER_SURCHARGE = 3.00;
 
         // Get Order Data from User
-        System.out.println("Enter unitPrice: ");
+        System.out.print("Enter unitPrice: ");
         double unitPrice = scanner.nextDouble();
 
-        System.out.println("Enter quantity: ");
+        System.out.print("Enter quantity: ");
         int quantity = scanner.nextInt();
 
-        System.out.println("Is customer a member? (true/false): ");
+        System.out.print("Is customer a member? (true/false): ");
         boolean isMember = scanner.nextBoolean();
         scanner.nextLine();
 
-        System.out.println("Enter customer tier (Regular/Silver/Gold): ");
+        System.out.print("Enter customer tier (Regular/Silver/Gold): ");
         String customerTier = scanner.nextLine();
 
-        System.out.println("Enter shipping zone: (ZoneA/ZoneB/ZoneC/Unknown)");
+        System.out.print("Enter shipping zone (ZoneA/ZoneB/ZoneC/Unknown): ");
         final String shippingZone = scanner.nextLine();
 
-        System.out.println("Enter discount code: (SAVE10/FREESHIP/\"\" for none)");
+        System.out.print("Enter discount code: (SAVE10/FREESHIP/\"\" for none)");
         String discountCode = scanner.nextLine();
 
         // Subtotal Calculation
